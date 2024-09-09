@@ -32,7 +32,8 @@ RUN apt-get install -y \
     python3-pip \
     python3-nose \
     python3-colcon-common-extensions \
-    python3-vcstool
+    python3-vcstool \
+    python-is-python3
 
 RUN apt-get install -y \
     ros-humble-ros2-control \
@@ -48,10 +49,14 @@ RUN apt-get update && apt-get install -y \
     ros-humble-moveit-ros-visualization \
     ros-humble-moveit-setup-assistant
 
+RUN apt install ament-cmake-nose ros-humble-gazebo-ros-pkgs
+
 
 # Initialize rosdep
 # RUN rosdep init
 RUN rosdep update
+
+RUN pip install serial
 
 # Source ROS 2 setup file
 RUN echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
