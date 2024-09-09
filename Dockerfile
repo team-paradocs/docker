@@ -4,6 +4,8 @@ FROM nvidia/cuda:11.7.1-cudnn8-runtime-ubuntu22.04
 # Set environment variables for non-interactive installations
 ENV DEBIAN_FRONTEND=noninteractive
 
+WORKDIR /ros_ws
+
 # Update the system and install essential dependencies
 RUN apt-get update && apt-get install -y \
     curl \
@@ -27,8 +29,25 @@ RUN apt-get update && apt-get install -y \
     python3-rosdep2
 
 RUN apt-get install -y \
+    python3-pip \
+    python3-nose \
     python3-colcon-common-extensions \
     python3-vcstool
+
+RUN apt-get install -y \
+    ros-humble-ros2-control \
+    ros-humble-ros2-controllers \
+    ros-humble-control-toolbox \
+    ros-humble-joint-state-publisher \
+    ros-humble-rviz2
+
+# Install MoveIt for ROS 2 Humble
+RUN apt-get update && apt-get install -y \
+    ros-humble-moveit \
+    ros-humble-moveit-ros-planning \
+    ros-humble-moveit-ros-visualization \
+    ros-humble-moveit-setup-assistant
+
 
 # Initialize rosdep
 # RUN rosdep init
@@ -36,6 +55,7 @@ RUN rosdep update
 
 # Source ROS 2 setup file
 RUN echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
+# RUN rosdep install --from-paths src --ignore-src -r -y
 
 # Install x11 dependencies for GUI applications
 RUN apt-get install -y libgl1-mesa-glx libxrender1 libxext6 libxtst6
