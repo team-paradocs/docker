@@ -26,6 +26,10 @@ RUN apt-get update && apt-get install -y \
     ros-humble-desktop \
     python3-rosdep2
 
+RUN apt-get install -y \
+    python3-colcon-common-extensions \
+    python3-vcstool
+
 # Initialize rosdep
 # RUN rosdep init
 RUN rosdep update
