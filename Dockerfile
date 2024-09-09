@@ -49,7 +49,7 @@ RUN apt-get update && apt-get install -y \
     ros-humble-moveit-ros-visualization \
     ros-humble-moveit-setup-assistant
 
-RUN apt install ament-cmake-nose ros-humble-gazebo-ros-pkgs vim-gtk3
+RUN apt install -y ament-cmake-nose ros-humble-gazebo-ros-pkgs vim-gtk3
 
 
 # Initialize rosdep
