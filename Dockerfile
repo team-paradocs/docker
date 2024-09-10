@@ -47,7 +47,7 @@ RUN apt-get update && apt-get install -y \
     ros-humble-moveit \
     ros-humble-moveit-ros-planning \
     ros-humble-moveit-ros-visualization \
-    ros-humble-moveit-setup-assistant
+    ros-humble-moveit-setup-assistant ros-humble-gazebo-ros2-control
 
 RUN apt install -y ament-cmake-nose ros-humble-gazebo-ros-pkgs vim-gtk3
 
